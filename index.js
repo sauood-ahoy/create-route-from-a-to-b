@@ -22,6 +22,7 @@ async function initializeMap() {
   // Create the default UI components
   const ui = AhoyMapView.ui().UI.createDefault(map, defaultLayers);
   addMarkerAtPoints();
+  createRoute();
 }
 async function createRoute() {
   const createrRouteRes = await AhoyMapView.createRoute({
@@ -36,11 +37,11 @@ async function createRoute() {
     // Create a polyline to display the route:
     let routeLine = AhoyMapView.polyline(4, 'blue', linestring);
     // Add the route polyline and the two markers to the map:
-    map.addObjects([routeLine]);
+    map.addObject(routeLine);
     // Set the map's viewport to make the whole route visible:
     map
       .getViewModel()
-      .setLookAtData({ bounds: routeLine.getBoundingBox(), zoom: 12 });
+      .setLookAtData({ bounds: routeLine.getBoundingBox(), zoom: 11 });
   });
 }
 
@@ -58,4 +59,3 @@ function addMarkerAtPoints() {
 }
 
 initializeMap();
-createRoute();
